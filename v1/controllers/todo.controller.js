@@ -4,8 +4,6 @@ const TodoModel = require("../models/todo.model");
 class TodoController {
   static createTodo(req, res) {
     const todo = req.body;
-    console.log("todo", typeof todo);
-
     new TodoModel(todo)
       .save()
       .then((result) => {
@@ -18,7 +16,6 @@ class TodoController {
 
   static deleteTodo(req, res) {
     const { id } = req.params;
-    console.log("server id", id);
     TodoModel.findOneAndDelete({ _id: id })
       .then((result) => {
         res.status(200).send({ message: "todo deleted", data: result });
